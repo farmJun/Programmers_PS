@@ -10,10 +10,10 @@ bool isPrimeNumber(int number){
     if(number == 0 || number == 1){
         return false;
     }
-    if(number == 2){
+    if(number == 2 ){
         return true;
     }
-    for(int i = 2; i <= ((number/2)+1); i++){
+    for(int i = 2; i <= ((number/2) + 1); i++){
         if(number % i == 0){
             return false;
         }
@@ -22,31 +22,22 @@ bool isPrimeNumber(int number){
 }
 
 int solution(string numbers) {
-    vector<int> number;
 
-    for(int i = 0; i < numbers.size(); i++){
-        number.push_back(numbers[i] -'0');
-    }
-
-    sort(number.begin(), number.end());
+    sort(numbers.begin(), numbers.end());
 
     set<int> allNumber;
     int answer = 0;
 
-
     do{
-        int p = 0;
-        for(int i = 1; i <= number.size(); i++){
-            int n = 0;
-            for(int j = 0; j < i; j++){
-                n += pow(10, j) * number[j];
-            }
-            cout << n << '\n';
+        for(int i = 1; i <= numbers.size(); i++){
+            int n = stoi(numbers.substr(0, i));
+
             if(isPrimeNumber(n)){
                 allNumber.insert(n);
             }
+            cout << '\n';
         }
-    }while(next_permutation(number.begin(), number.end()));
+    }while(next_permutation(numbers.begin(), numbers.end()));
 
     return allNumber.size();
 }
